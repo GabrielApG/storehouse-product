@@ -120,7 +120,7 @@ angular.module('storehouseProduct').controller('storehouseProductCtrl', ['$scope
 		};
 
 		_method(_urlSave,product,config).success(function(response){
-			$("#debug").html(response);
+			//$("#debug").html(response);
 			flash.success(response.message,storehouseConfig.product.alert.success);
 			if (response.data.id!=product.id){
 				$scope.listProduct.push(response.data);
@@ -132,6 +132,8 @@ angular.module('storehouseProduct').controller('storehouseProductCtrl', ['$scope
 			if (category.name!='') {
 				$scope.changeCategory();
 			}
+			$scope.selectedCategory.description=response.data.categories[0];
+			$scope.selectedCategory.title=response.data.categories[0].name;
 		}).error(function(response, status, headers, config){
 			//$("#debug").html(response);
 			flash.error(response.message,storehouseConfig.product.alert.error);

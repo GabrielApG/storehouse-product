@@ -76,4 +76,4 @@ angular.module('flashMessage').factory('flash', function(){
 		}, fContinue);
 	};
 	return flash;
-});confirm
+});
