@@ -44,7 +44,7 @@ class ProductServiceProvider extends ServiceProvider
         );
         */
 
-        $this->mergeConfigFrom(__DIR__.'/../resources/config/storehouse-product.php', 'storehouse-product');
+        $this->mergeConfigFrom(__DIR__.'/../Resources/config/storehouse-product.php', 'storehouse-product');
     }
 
     /**
@@ -76,7 +76,7 @@ class ProductServiceProvider extends ServiceProvider
     protected function publishStorehouseConfiguration()
     {
         $this->publishes([
-            __DIR__.'/../resources/config/storehouse-product.php' => config_path('storehouse-product.php')
+            __DIR__.'/../Resources/config/storehouse-product.php' => config_path('storehouse-product.php')
         ], 'config');
     }
 
@@ -86,11 +86,11 @@ class ProductServiceProvider extends ServiceProvider
     protected function publishStorehouseAssets()
     {
         $this->publishes([
-            __DIR__.'/../resources/assets' => public_path('resultsystems/storehouse/product')
+            __DIR__.'/../Resources/assets' => public_path('resultsystems/storehouse/product')
         ], 'assets');
 
         $this->publishes([
-            __DIR__.'/../resources/dist' => public_path('resultsystems/storehouse')
+            __DIR__.'/../Resources/dist' => public_path('resultsystems/storehouse')
         ], 'assets');
     }
 
@@ -99,7 +99,7 @@ class ProductServiceProvider extends ServiceProvider
      */
     protected function loadStorehouseViews()
     {
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'storehouse-product');
+        $this->loadViewsFrom(__DIR__.'/../Resources/views', 'storehouse-product');
     }
 
     /**
@@ -107,7 +107,7 @@ class ProductServiceProvider extends ServiceProvider
      */
     protected function loadStorehouseTranslations()
     {
-        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'storehouse-product');
+        $this->loadTranslationsFrom(__DIR__.'/../Resources/lang', 'storehouse-product');
     }
 
     /**
@@ -115,7 +115,7 @@ class ProductServiceProvider extends ServiceProvider
      */
     private function publishMigrations()
     {
-        $this->publishes([__DIR__.'/../resources/migrations/' => base_path('database/migrations')], 'migrations');
+        $this->publishes([__DIR__.'/../Resources/migrations/' => base_path('database/migrations')], 'migrations');
     }
 
     /**
