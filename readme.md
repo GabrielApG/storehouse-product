@@ -5,6 +5,8 @@
 ### 1. Dependência
 
 [Vídeo tutorial](http://youtu.be/ya57z4VRm_o).
+
+
 Usando o <a href="https://getcomposer.org/" target="_blank">composer</a>, execute o comando a seguir para instalar automaticamente `composer.json`:
 
 ```shell
