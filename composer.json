@@ -21,7 +21,7 @@
     },
     "autoload": {
         "psr-4": {
-            "ResultSystems\\Storehouse\\Product\\": "src/StorehouseProduct/"
+            "ResultSystems\\Storehouse\\Product\\": "src/Product/"
         }
     },
     "minimum-stability": "dev"
