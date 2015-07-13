@@ -36,11 +36,13 @@ class ProductServiceProvider extends ServiceProvider
      */
     protected function registerBindings()
     {
+        /*
         $this->app->singleton(
             'security.get', function ($app) {
                 return new \ResultSystems\SecurityRouter\Providers\SecurityRouterServiceProvider;
             }
         );
+        */
 
         $this->mergeConfigFrom(__DIR__.'/../resources/config/storehouse-product.php', 'storehouse-product');
     }
@@ -97,7 +99,7 @@ class ProductServiceProvider extends ServiceProvider
      */
     protected function loadStorehouseViews()
     {
-        $this->loadViewsFrom(__DIR__.'/../resources/views/storehouse-product', 'storehouse-product');
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'storehouse-product');
     }
 
     /**
@@ -105,7 +107,7 @@ class ProductServiceProvider extends ServiceProvider
      */
     protected function loadStorehouseTranslations()
     {
-        $this->loadTranslationsFrom(__DIR__.'/../resources/lang/storehouse-product', 'storehouse-product');
+        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'storehouse-product');
     }
 
     /**
