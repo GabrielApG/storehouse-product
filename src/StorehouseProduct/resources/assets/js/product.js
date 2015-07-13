@@ -188,11 +188,11 @@ angular.module('storehouseProduct').controller('storehouseProductCtrl', ['$scope
 				}
 			};
 			$http.delete(storehouseConfig.product.route+'/'+product.id,config).success(function(response){
-				token=response._token;
 				var index=$scope.listProduct.indexOf(product);
 				$scope.listProduct.splice(index,1);
 				$scope.product={};
 				flash.success(response.message,storehouseConfig.product.alert.success);
+//				token=response._token;
 			}).error(function(response, status, headers, config) {
 				//$("#debug").html(response);
 				flash.error(response.message,storehouseConfig.product.alert.error);
