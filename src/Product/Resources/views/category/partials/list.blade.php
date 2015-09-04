@@ -6,7 +6,7 @@
 		<div class="row">
 			<div class="col-md-4"><a href ng-click="order('name')">Categoria</a></div>
 			<div class="col-md-4">Descrição</div>
-			<div class="col-md-4">Açõesxx</div>
+			<div class="col-md-4">Ações</div>
 		</div>
 		<div class="row bg-info">
 		</div>

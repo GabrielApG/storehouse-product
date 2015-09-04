@@ -2,8 +2,8 @@
 
 namespace ResultSystems\Storehouse\Product\Repositories;
 
-use ResultSystems\Storehouse\Product\Models\StorehouseProductCategory;
 use DB;
+use ResultSystems\Storehouse\Product\Entities\StorehouseProductCategory;
 
 class ProductCategoryRepository implements iProductCategoryRepository
 {
@@ -13,16 +13,16 @@ class ProductCategoryRepository implements iProductCategoryRepository
     protected $category;
 
     /**
-     * Class consctruct
-     *@param ResultSystems\Storehouse\Product\Models\StorehouseProductCategory $category
+     * Class consctruct.
+     *@param ResultSystems\Storehouse\Product\Entities\StorehouseProductCategory $category
      */
     public function __construct(StorehouseProductCategory $category)
     {
-        $this->category=$category;
+        $this->category = $category;
     }
 
     /**
-     * pesquisa os produtos com os dados passados via GET/POST
+     * pesquisa os produtos com os dados passados via GET/POST.
      * @param  array $request
      * @return object
      */
@@ -31,29 +31,31 @@ class ProductCategoryRepository implements iProductCategoryRepository
         if (!isset($request['submit'])) {
             return [];
         }
-        $category=$this->category;
+        $category = $this->category;
         if (isset($request['category_id'])) {
-            $category=$category->where('id', $request['category_id'])->get();
+            $category = $category->where('id', $request['category_id'])->get();
+
             return $category;
         }
         if (isset($request['name'])) {
-            $category=$category->where('name', 'like', $request['name'].'%');
+            $category = $category->where('name', 'like', $request['name'].'%');
         }
         if (isset($request['description'])) {
-            $category=$category->where('description', 'like', '%'.$request['description'].'%');
+            $category = $category->where('description', 'like', '%'.$request['description'].'%');
         }
+
         return $category->get();
     }
 
     /**
-     * Cria uma nova categoria
+     * Cria uma nova categoria.
      * @param  array $request
      * @return bool|\Illuminate\Database\Eloquent\Collection
      */
-    public function store(array $request, $beginTransaction=true)
+    public function store(array $request, $beginTransaction = true)
     {
         //        $category=new $this->category;
-        $category=new $this->category;
+        $category = new $this->category;
         $category->fill($request);
         try {
             if ($beginTransaction) {
@@ -63,24 +65,26 @@ class ProductCategoryRepository implements iProductCategoryRepository
             if ($beginTransaction) {
                 DB::commit();
             }
+
             return $this->findById($category->id);
         } catch (\Exception $e) {
             if ($beginTransaction) {
                 DB::rollback();
             }
+
             return false;
         }
     }
 
     /**
-     * atualiza uma categoria pelo id
+     * atualiza uma categoria pelo id.
      * @param  int $id
      * @param  array  $request
      * @return bool|int
      */
     public function update($id, array $request)
     {
-        $category=$this->category->find($id);
+        $category = $this->category->find($id);
         if (is_null($category)) {
             return false;
         }
@@ -89,15 +93,17 @@ class ProductCategoryRepository implements iProductCategoryRepository
             DB::beginTransaction();
             $category->save();
             DB::commit();
+
             return $category;
         } catch (\Exception $e) {
             DB::rollback();
+
             return false;
         }
     }
 
     /**
-     * pega todos os produtos
+     * pega todos os produtos.
      * @return object
      */
     public function all(array $with = [])
@@ -106,7 +112,7 @@ class ProductCategoryRepository implements iProductCategoryRepository
     }
 
     /**
-     * Apaga uma ou mais categorias pelo id
+     * Apaga uma ou mais categorias pelo id.
      *
      * @param  array|int  $ids
      * @return int
@@ -117,7 +123,7 @@ class ProductCategoryRepository implements iProductCategoryRepository
     }
 
     /**
-     * Devolve a categoria pelo id
+     * Devolve a categoria pelo id.
      * @param  int $id
      * @return Illuminate\Database\Eloquent\Collection
      */
