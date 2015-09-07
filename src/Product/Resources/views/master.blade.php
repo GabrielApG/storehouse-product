@@ -54,7 +54,7 @@
 							{{ ucfirst(current(str_word_count(Auth::user()->name, 2, 'áàãâäÁÀÃÂÄéèẽêëÉÈẼÊËíìĩîïÍÌĨÎÏóòõôöÓÒÕÔÖúùũûüÚÙŨÛÜýỳỹŷÿÝỲỸŶŸçÇ') ))  }}
 							<span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
-								<li><a href="{{ url(config('storeouse-product.system_logout')) }}">Logout</a></li>
+								<li><a href="{{ config('storehouse-product.system_logout','/auth/logout') }}">Logout</a></li>
 							</ul>
 						</li>
 					@endif
