@@ -1,8 +1,8 @@
 <?php
 
-namespace ResultSystems\Storehouse\Models\Storehouse;
+namespace ResultSystems\Storehouse\Entities\Storehouse;
 
-use ResultSystems\Person\Models\Person;
+use ResultSystems\Person\Entities\Person;
 
 class StorehousePerson extends Person
 {
