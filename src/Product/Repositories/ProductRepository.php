@@ -17,6 +17,42 @@ class ProductRepository implements iProductRepository
         $this->product = $prod;
     }
 
+    //Adiciona estoque
+    public function entryStock($idProduct, $amount)
+    {
+        $product = $this->findById($idProduct);
+        if (!is_nulL($product)) {
+            $product->current_inventory += $amount;
+            try {
+                $product->save();
+
+                return true;
+            } catch (\Exception $e) {
+                return false;
+            }
+        }
+
+        return false;
+    }
+
+    //Subtrai quantidade do estoque
+    public function outputStock($idProduct, $amount)
+    {
+        $product = $this->findById($idProduct);
+        if (!is_nulL($product)) {
+            $product->current_inventory -= $amount;
+            try {
+                $product->save();
+
+                return true;
+            } catch (\Exception $e) {
+                return false;
+            }
+        }
+
+        return false;
+    }
+
     /**
      * Retorna todos os produtos.
      * @param  array  $with [description]
