@@ -27,7 +27,7 @@ return [
     /*
      * Default url used to redirect user to logout of your the system.
      */
-    'system_logout' => '/auth/logout.php',
+    'system_logout' => '/auth/logout',
 
     /*
      * Default layout extends
