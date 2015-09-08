@@ -4,9 +4,13 @@
  * emtudo@gmail.com
  */
 
-angular.module('storehouseProduct',['flashMessage', 'cacheSearch', 'angucomplete-alt']);
+if (storehouseConfig.module=='storehouseProduct') {
+	angular.module(storehouseConfig.module,['flashMessage', 'cacheSearch', 'angucomplete-alt']);
+} else {
+	angular.module(storehouseConfig.module).controller('storehouseProductCtrl', ['$scope', '$filter', '$http', 'flash', 'Search', storehouseProductCtrl]);
+}
 
-angular.module('storehouseProduct').controller('storehouseProductCtrl', ['$scope', '$filter', '$http', 'flash', 'Search', function($scope, $filter, $http, flash, Search) {
+function storehouseProductCtrl($scope, $filter, $http, flash, Search) {
 	//Inicializa as variáveis
 	//Valores iniciais;
 	$scope.categories = []; //array de categorias
@@ -207,6 +211,4 @@ angular.module('storehouseProduct').controller('storehouseProductCtrl', ['$scope
 			storehouseConfig.product.alert.delete.button.cancel
 		);
 	};
-}]);
-
-
+};

@@ -30,6 +30,11 @@ return [
     'system_logout' => '/auth/logout',
 
     /*
+     * Default module angular
+     */
+    'module_system' => 'storehouseProduct',
+
+    /*
      * Default layout extends
      */
     'layout' => [

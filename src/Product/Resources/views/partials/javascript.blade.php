@@ -3,6 +3,7 @@ var token='{{ csrf_token() }}';
 var urlBase='{{ url('/') }}';
 var storehouseConfig = {
 
+	'module': '{{ config('storehouse-product.module_system','storehouseProduct') }}',
 	'product': {
 		'alert': {
 			'success' : '{{ trans('storehouse-product::product.alert.success') }}',

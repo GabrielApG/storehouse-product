@@ -1,6 +1,8 @@
 
+angular.module(storehouseConfig.module).controller('storehouseProductCategoryCtrl', ['$scope', '$filter', '$http', 'flash', storehouseProductCategoryCtrl]);
 
-angular.module('storehouseProduct').controller('storehouseProductCategoryCtrl', ['$scope', '$filter', '$http', 'flash', function($scope, $filter, $http, flash) {
+
+function storehouseProductCategoryCtrl($scope, $filter, $http, flash) {
 	//Inicializa as variáveis
 	//Valores iniciais;
 	$scope.category = {}; //objeto de categoria
@@ -128,4 +130,4 @@ angular.module('storehouseProduct').controller('storehouseProductCategoryCtrl', 
 			storehouseConfig.category.alert.delete.button.cancel
 		);
 	};
-}]);
+};
