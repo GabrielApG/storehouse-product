@@ -26,6 +26,8 @@ function storehouseProductCtrl($scope, $filter, $http, flash, Search) {
 	$scope.reportProduct=[]; //Relatório de produtos
 	$scope.showReport=false;
 	$scope.view=[];
+	$scope.saldoInicial=0;
+	$scope.saldo=0;
 
 	//url da consulta de categorias
 	searchCategory=storehouseConfig.product.route+'/category/search?submit=1&name=';
@@ -226,12 +228,23 @@ function storehouseProductCtrl($scope, $filter, $http, flash, Search) {
 		$scope.view=angular.copy(product);
 		$scope.reportProduct=[];
 		$scope.showReport=true;
+		$scope.saldoInicial=angular.copy(product.current_inventory);
+		$scope.saldo=parseFloat(angular.copy(product.current_inventory));
 
 		var urlReport=storehouseConfig.product.route;
 
 		//flash.success('Carregando o relatório, aguarde','Aviso!');
 		$http.get(urlReport+'/'+id+'/report').success(function(response){
 			$scope.reportProduct=angular.copy(response);
+			angular.forEach($scope.reportProduct, function(value, key) {
+				if (value.tipo=='entrada') {
+				  	$scope.saldo+=parseFloat(value.quantidade);
+				} else {
+				  	$scope.saldo-=parseFloat(value.quantidade);
+				}
+				$scope.reportProduct[key].saldo=angular.copy($scope.saldo);
+			});
+
 			//flash.success('Carregado','Sucesso!');
 		}).error(function(response){
 			flash.error('Não foi possível carregar o relatório','Erro!');
