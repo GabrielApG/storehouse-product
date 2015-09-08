@@ -4,6 +4,10 @@
  * emtudo@gmail.com
  */
 
+if (typeof storehouseConfig == "undefined") {
+	storehouseConfig.module='storehouseProduct';
+}
+
 if (storehouseConfig.module=='storehouseProduct') {
 	angular.module(storehouseConfig.module,['flashMessage', 'cacheSearch', 'angucomplete-alt']);
 } else {

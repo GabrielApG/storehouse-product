@@ -1,4 +1,8 @@
 
+if (typeof storehouseConfig == "undefined") {
+	storehouseConfig.module='storehouseProduct';
+}
+
 angular.module(storehouseConfig.module).controller('storehouseProductCategoryCtrl', ['$scope', '$filter', '$http', 'flash', storehouseProductCategoryCtrl]);
 
 
