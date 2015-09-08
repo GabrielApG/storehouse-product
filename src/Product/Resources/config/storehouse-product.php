@@ -97,6 +97,17 @@ return [
                 'is' => null,
             ],
         ],
+        'report' => [
+            'protected' => false,
+            'middleware' => [],
+            'defender' => [
+                'load' => true,
+                'middleware' => ['needsRoleOrPermission'], //Use needsPermission or needsRoles
+                'can' => ['storehouse.product.report'],
+                'any' => false,
+                'is' => null,
+            ],
+        ],
         'show' => [
             'protected' => false,
             'middleware' => [],

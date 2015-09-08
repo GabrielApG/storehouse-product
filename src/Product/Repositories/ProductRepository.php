@@ -2,6 +2,7 @@
 
 namespace ResultSystems\Storehouse\Product\Repositories;
 
+use DB;
 use ResultSystems\Storehouse\Product\Entities\StorehouseProduct;
 
 class ProductRepository implements iProductRepository
@@ -71,6 +72,31 @@ class ProductRepository implements iProductRepository
     public function findById($id)
     {
         return $this->product->where('id', $id)->with('categories')->first();
+    }
+
+    /**
+     * Relatório de entrada e saída de produtos.
+     * @param  int $id
+     *
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function report($id)
+    {
+        $sql = "SELECT storehouse_product_id AS id,
+                storehouse_nota_entrada_id As entrada_saida_id, quantidade, valor, 'entrada' As tipo, (SELECT created_at FROM storehouse_nota_entradas AS nfe WHERE nfe.id=nfep.storehouse_nota_entrada_id) AS created_at
+            FROM storehouse_nota_entrada_produtos AS nfep
+            WHERE storehouse_product_id=${id}
+                UNION ALL(
+                    SELECT storehouse_product_id AS id,
+                        storehouse_ordem_saida_id As entrada_saida_id, quantidade,
+                        '0,00' AS valor, 'saida' AS tipo,
+                        (SELECT created_at FROM storehouse_ordem_saidas AS osaida WHERE osaida.id=osaidap.storehouse_ordem_saida_id) AS created_at
+                    FROM storehouse_ordem_saida_produtos AS osaidap
+                    WHERE storehouse_product_id=${id}
+                )
+            ORDER BY created_at";
+
+        return DB::select($sql);
     }
 
     /**
