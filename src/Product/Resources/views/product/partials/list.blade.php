@@ -19,7 +19,7 @@
 				<div class="col-md-2">@{{product.current_inventory}}</div>
 				<div class="col-md-1">@{{product.minimum_inventory}}</div>
 				<div class="col-md-3">
-					<button data-toggle="modal" data-target="#modelProductReport" class="btn btn-xs btn-info" ng-click="report(product.id)">relatório</button>
+					<button class="btn btn-xs btn-info" ng-click="report(product.id)">relatório</button>
 					<button class="btn btn-xs btn-success" ng-click="edit(product)">editar</button>
 					<button class="btn btn-xs btn-danger" ng-click="delete(product)">excluir</button>
 				</div>

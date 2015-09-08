@@ -23,6 +23,8 @@ function storehouseProductCtrl($scope, $filter, $http, flash, Search) {
 	$scope.product={}; //objecto de produto
 	$scope.listProduct=[]; //array de produtos
 	$scope.reverse=true; //ordenar consultar reversa
+	$scope.reportProduct=[]; //Relatório de produtos
+	$scope.showReport=false;
 
 	//url da consulta de categorias
 	searchCategory=storehouseConfig.product.route+'/category/search?submit=1&name=';
@@ -217,14 +219,18 @@ function storehouseProductCtrl($scope, $filter, $http, flash, Search) {
 	};
 
 	$scope.report=function(id){
+		$scope.reportProduct=[];
+		$scope.showReport=true;
 		var urlReport=storehouseConfig.product.route;
 
-		flash.warning('Carregando o relatório, aguarde','Aviso!');
+		//flash.success('Carregando o relatório, aguarde','Aviso!');
 		$http.get(urlReport+'/'+id+'/report').success(function(response){
-			$scope.view=angular.copy(response);
-			flash.success('Carregado','Sucesso!');
+			$scope.reportProduct=angular.copy(response);
+			//flash.success('Carregado','Sucesso!');
 		}).error(function(response){
 			flash.error('Não foi possível carregar o relatório','Erro!');
+			$scope.showReport=false;
 		});
+		window.location.href = '#productReport';
 	}
 };
