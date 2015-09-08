@@ -25,6 +25,7 @@ function storehouseProductCtrl($scope, $filter, $http, flash, Search) {
 	$scope.reverse=true; //ordenar consultar reversa
 	$scope.reportProduct=[]; //Relatório de produtos
 	$scope.showReport=false;
+	$scope.view=[];
 
 	//url da consulta de categorias
 	searchCategory=storehouseConfig.product.route+'/category/search?submit=1&name=';
@@ -156,6 +157,7 @@ function storehouseProductCtrl($scope, $filter, $http, flash, Search) {
 	 * @return bool|alert
 	 */
 	$scope.search=function(product){
+		window.location.href = '#listProduct';
 		//Unidade de medida
 		if (product.unit!=undefined){
 			product.unit=product.unit.unit;
@@ -218,9 +220,13 @@ function storehouseProductCtrl($scope, $filter, $http, flash, Search) {
 		);
 	};
 
-	$scope.report=function(id){
+	//Relatório de produtos
+	$scope.report=function(product){
+		var id=product.id;
+		$scope.view=angular.copy(product);
 		$scope.reportProduct=[];
 		$scope.showReport=true;
+
 		var urlReport=storehouseConfig.product.route;
 
 		//flash.success('Carregando o relatório, aguarde','Aviso!');
@@ -232,5 +238,10 @@ function storehouseProductCtrl($scope, $filter, $http, flash, Search) {
 			$scope.showReport=false;
 		});
 		window.location.href = '#productReport';
+	};
+
+	//Volta ao produto anterior
+	$scope.gotoProduct=function(id) {
+		window.location.href = '#productId'+id;
 	}
 };

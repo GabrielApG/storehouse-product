@@ -1,7 +1,7 @@
 <!-- ___ -->
 <!-- start partial report -->
 <div class="panel panel-default" ng-hide="!showReport">
-	<div class="panel-heading"><section id="productReport">Relatório @{{report.length}}</section></div>
+	<div class="panel-heading"><section id="productReport">Relatório @{{view.name}}</section></div>
 	<div class="panel-body">
 		<div class="row">
 			<div class="col-md-2">Tipo</div>
@@ -19,6 +19,7 @@
 		</div>
 		<div class="row bg-success">
 			<button type="button" ng-click="showReport=false">Fechar relatório</button>
+			<button type="button" ng-click="gotoProduct(view.id)">Voltar ao produto</button>
 		</div>
 	</div>
 </div>
