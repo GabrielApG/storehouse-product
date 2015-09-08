@@ -7,6 +7,7 @@
 <div id="debug"></div>
 <div class="container" ng-app="storehouseProduct" ng-controller="storehouseProductCtrl">
 	<div class="col-md-10 col-md-offset-1">
+		@include("storehouse-product::product.partials.report")
 		@include("storehouse-product::product.partials.list")
 		@include("storehouse-product::product.partials.search")
 		@include("storehouse-product::product.partials.update")

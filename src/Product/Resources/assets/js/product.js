@@ -215,4 +215,16 @@ function storehouseProductCtrl($scope, $filter, $http, flash, Search) {
 			storehouseConfig.product.alert.delete.button.cancel
 		);
 	};
+
+	$scope.report=function(id){
+		var urlReport=storehouseConfig.product.route;
+
+		flash.warning('Carregando o relatório, aguarde','Aviso!');
+		$http.get(urlReport+'/'+id+'/report').success(function(response){
+			$scope.view=angular.copy(response);
+			flash.success('Carregado','Sucesso!');
+		}).error(function(response){
+			flash.error('Não foi possível carregar o relatório','Erro!');
+		});
+	}
 };
